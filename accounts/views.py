@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
 from .forms import RegisterForm, LoginForm
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
+from posts.models import Post
 
 # Create your views here.
 def registration(request):
@@ -37,7 +38,7 @@ def login_user(request):
             user = authenticate(username=username, password=password)
             if user is not None:
                 login(request, user)
-                return redirect('account')
+                return redirect('/', user=user)
             else:
                 return_data = {'form': form, 'error': 'Can\'t login account.'}
                 return render(request, 'accounts/login.html', return_data)
@@ -47,4 +48,10 @@ def login_user(request):
         return render(request, 'accounts/login.html', return_data)
 
 def account(request):
-    return render(request, 'accounts/account.html', {})
+    posts_list = Post.objects.filter(author=request.user.id)
+    return_data = {'posts':posts_list}
+    return render(request, 'accounts/account.html', return_data)
+
+def logout_user(request):
+    logout(request)
+    return redirect('/')
