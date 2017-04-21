@@ -1,1 +1,32 @@
-Account
+{% include 'includes/header.html' %}
+{% include 'includes/navbar.html' %}
+
+<div class="container">
+	<div class="row">
+		<div class="col-sm-12 col-md-8">
+			<a href="/add-post" class="btn btn-success">Add a new post</a>
+			<hr>
+			<h3>Here are the posts you have created</h3>
+			{% if posts %}
+				<ul>
+					{% for post in posts %}
+						<li>
+							<p>{{ post.title }}</p>
+							<p>{{ post.date_created }}</p>
+							<p>{{ post.content }}</p>
+							{% if post.published %}
+								<small>Published</small>
+							{% else %}
+								<small>Draft</small>
+							{% endif %}
+						</li>
+					{% endfor %}
+				</ul>
+			{% endif %}
+		</div>
+		<div class="col-sm-12 col-md-4">
+		</div>
+	</div>
+</div>
+
+{% include 'includes/footer.html' %}
