@@ -1,0 +1,47 @@
+{% include 'includes/header.html'%}
+
+<div class="container">
+<br><br>
+	<div class="row">
+		<div class="col-sm-12 col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4">
+			<div class="well">
+				<h3>Register an account</h3>
+				<br>
+				{% if error%}
+					<div class="alert alert-warning">{{error}}</div>
+				{% endif %}
+				<br>
+				<form action="/register" method="post">
+					{% csrf_token %}
+					<div class="form-group">
+						<label class="control-label">{{ form.email.label }}</label>
+						<input id="id_email" maxlength="100" name="email" type="email" required="" class="form-control">
+					</div>
+					<div class="form-group">
+						<label class="control-label">{{ form.username.label }}</label>
+						<input id="id_username" maxlength="20" name="username" type="text" required="" class="form-control">
+					</div>
+					<div class="form-group">
+						<label class="control-label">{{ form.password.label }}</label>
+						<input id="id_password" minlength="6" name="password" type="password" required="" class="form-control">
+					</div>
+					<div class="form-group">
+						<div class="row">
+							<div class="col-sm-12 col-md-4 col-lg-4">
+								<button type="submit" class="btn btn-primary btn-block">Register</button>
+							</div>
+							<div class="col-sm-12 col-md-4 col-lg-4">
+								<a href="/login/" class="btn btn-success btn-block">Login</a>
+							</div>
+							<div class="col-sm-12 col-md-4 col-lg-4">
+								<a href="/" class="btn btn-default btn-block">Home</a>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% include 'includes/footer.html'%}
