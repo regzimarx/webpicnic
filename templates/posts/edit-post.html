@@ -1,0 +1,37 @@
+{% include 'includes/header.html' %}
+{% include 'includes/navbar.html' %}
+
+<div class="container">
+	<div class="row">
+		<div class="col-sm-12 col-md-8">
+			<a href="/account" class="btn btn-success pull-right">Back</a>
+			<h3>Edit this post</h3>
+			<div class="well">
+				<form action="/edit/{{post.id}}" method="post">
+					{% csrf_token %}
+					<div class="form-group">
+						<label class="control-label">{{form.title.label}}</label>
+						<input id="id_title" maxlength="250" name="title" type="text" required="" class="form-control" value="{{post.title}}">
+					</div>
+					<div class="form-group">
+						<label class="control-label">{{form.content.label}}</label>
+						<textarea cols="40" id="id_content" name="content" rows="10" required="" class="form-control">{{post.content}}</textarea>
+					</div>
+					<div class="form-group">
+						<input name="author" type="hidden" required="" value="{{author}}">
+					</div>
+					<div class="form-group">
+						<input id="id_published" name="published" type="checkbox" {% if post.published%}checked{% endif %}> Check to publish. Leave unchecked to save as draft
+					</div>
+					<div class="form-group">
+						<button type="submit" class="btn btn-primary">Update post</button>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div class="col-sm-12 col-md-4">
+		</div>
+	</div>
+</div>
+
+{% include 'includes/footer.html' %}
