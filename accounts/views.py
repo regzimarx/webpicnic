@@ -48,9 +48,12 @@ def login_user(request):
         return render(request, 'accounts/login.html', return_data)
 
 def account(request):
-    posts_list = Post.objects.filter(author=request.user.id)
-    return_data = {'posts':posts_list}
-    return render(request, 'accounts/account.html', return_data)
+    if request.user.is_authenticated:
+        posts_list = Post.objects.filter(author=request.user.id).order_by('-date_created')
+        return_data = {'posts':posts_list}
+        return render(request, 'accounts/account.html', return_data)
+    else:
+        return redirect('/')
 
 def logout_user(request):
     logout(request)
