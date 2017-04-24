@@ -6,3 +6,8 @@ class AddPostForm(ModelForm):
 	class Meta:
 		model = Post
 		fields = ['title', 'content', 'author', 'published']
+
+class EditPostForm(ModelForm):
+	class Meta:
+		model = Post
+		fields = ['title', 'content', 'author', 'published']
