@@ -1,0 +1,19 @@
+{% include 'includes/header.html' %}
+{% include 'includes/navbar.html' %}
+
+<div class="container">
+	<div class="row">
+		<div class="col-sm-12 col-md-8">
+			{% if post %}
+				<h3>{{post.title}}</h3>
+				<small>{{ post.date_created }} | Updated: {{ post.date_updated }} | by {{post.author}}</small><hr>
+				<p>{{ post.content }}</p>
+			{% endif %}
+		</div>
+		<div class="col-sm-12 col-md-4">
+			{% include 'includes/sidebar.html' %}
+		</div>
+	</div>
+</div>
+
+{% include 'includes/footer.html' %}
