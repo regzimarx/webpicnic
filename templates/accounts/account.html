@@ -4,27 +4,28 @@
 <div class="container">
 	<div class="row">
 		<div class="col-sm-12 col-md-8">
-			<a href="/add-post" class="btn btn-success">Add a new post</a>
-			<hr>
-			<h3>Here are the posts you have created</h3>
+			<a href="/add" class="btn btn-default btn-sm pull-right">Add a new post</a>
+			<br>
 			{% if posts %}
 				<ul>
 					{% for post in posts %}
-						<li>
-							<p>{{ post.title }}</p>
-							<p>{{ post.date_created }}</p>
-							<p>{{ post.content }}</p>
-							{% if post.published %}
-								<small>Published</small>
-							{% else %}
-								<small>Draft</small>
-							{% endif %}
-						</li>
+						<hr>
+						<a href="{{ post.slug }}"><h3>{{ post.title }}</h3></a>
+						<small>{{ post.date_created }} | Updated: {{ post.date_updated }} | by {{post.author}}</small> | 
+						{% if post.published %}
+							<small><i>Published</i></small>
+						{% else %}
+							<small><i>Draft</i></small>
+						{% endif %}
+						<p>{{ post.content | truncatechars:300 }} <a href="edit/{{ post.id }}" class="btn btn-warning btn-sm">Edit</a></p>
 					{% endfor %}
 				</ul>
+			{% else %}
+				<h5>No posts here!</h5>
 			{% endif %}
 		</div>
 		<div class="col-sm-12 col-md-4">
+			{% include 'includes/sidebar.html' %}
 		</div>
 	</div>
 </div>
