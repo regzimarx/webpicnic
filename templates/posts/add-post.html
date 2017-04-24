@@ -4,10 +4,10 @@
 <div class="container">
 	<div class="row">
 		<div class="col-sm-12 col-md-8">
-			<a href="account/" class="btn btn-success pull-right">Back</a>
+			<a href="account" class="btn btn-success pull-right">Back</a>
 			<h3>Add a new post</h3>
 			<div class="well">
-				<form action="/add-post" method="post">
+				<form action="/add" method="post">
 					{% csrf_token %}
 					<div class="form-group">
 						<label class="control-label">{{form.title.label}}</label>
@@ -21,8 +21,7 @@
 						<input name="author" type="hidden" required="" value="{{author}}">
 					</div>
 					<div class="form-group">
-						<input type="radio" value="False" name="published">Save as draft&nbsp;&nbsp;&nbsp;
-						<input type="radio" value="True" name="published">Save and publish
+						{{form.published}} Check to publish. Leave unchecked to save as draft
 					</div>
 					<div class="form-group">
 						<button type="submit" class="btn btn-primary">Add post</button>
