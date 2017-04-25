@@ -1,5 +1,5 @@
-{% include 'includes/header.html'%}
-
+{% extends 'includes/base.html' %}
+{% block content %}
 <div class="container">
 <br><br>
 	<div class="row">
@@ -11,21 +11,14 @@
 				{% endif %}
 				<form action="/login" method="post">
 					{% csrf_token %}
-					<div class="form-group">
-						<label class="control-label">{{ form.username.label }}</label>
-						<input id="id_username" maxlength="20" name="username" type="text" required="" class="form-control">
-					</div>
-					<div class="form-group">
-						<label class="control-label">{{ form.password.label }}</label>
-						<input id="id_password" minlength="6" name="password" type="password" required="" class="form-control">
-					</div>
+					{{form}}
 					<div class="form-group">
 						<div class="row">
 							<div class="col-sm-12">
 								<button type="submit" class="btn btn-primary btn-block">Login</button><br>
 							</div>
 							<div class="col-sm-12">
-								<a href="/register/" class="btn btn-success btn-block">Register</a><br>
+								<a href="register" class="btn btn-success btn-block">Register</a><br>
 							</div>
 							<div class="col-sm-12">
 								<a href="/" class="btn btn-default btn-block">Home</a>
@@ -37,5 +30,4 @@
 		</div>
 	</div>
 </div>
-
-{% include 'includes/footer.html'%}
+{% endblock %}
