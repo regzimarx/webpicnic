@@ -49,7 +49,7 @@ def login_user(request):
 
 def account(request):
     if request.user.is_authenticated:
-        posts_list = Post.objects.filter(author=request.user.id).order_by('-date_created')
+        posts_list = Post.objects.filter(author=request.user.id)
         return_data = {'posts':posts_list}
         return render(request, 'accounts/account.html', return_data)
     else:
