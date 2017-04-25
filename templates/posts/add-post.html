@@ -1,10 +1,10 @@
-{% include 'includes/header.html' %}
-{% include 'includes/navbar.html' %}
+{% extends 'includes/base.html' %}
+{% block content %}
 
 <div class="container">
 	<div class="row">
 		<div class="col-sm-12 col-md-8">
-			<a href="account" class="btn btn-success pull-right">Back</a>
+			<a href="/account" class="btn btn-success pull-right">Back</a>
 			<h3>Add a new post</h3>
 			<div class="well">
 				<form action="/add" method="post">
@@ -34,4 +34,4 @@
 	</div>
 </div>
 
-{% include 'includes/footer.html' %}
+{% endblock %}
