@@ -10,15 +10,21 @@
 	      <a class="navbar-brand" href="/">Webpicnic</a>
 	    </div>
 	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-	      	<ul class="nav navbar-nav">
-	      		{% if user.is_authenticated %}
-	      			<li><a href="/account">Account</a></li>
-	      			<li><a href="/logout">Logout</a></li>
-	      		{% else %}
-		        	<li><a href="/login">Login</a></li>
-		       		<li><a href="/register">Register</a></li>
-		       	{% endif %}
-	      	</ul>
+				<ul class="nav navbar-nav navbar-right">
+					{% if user.is_authenticated %}
+						<li><a href="/account">Account</a></li>
+						<li><a href="/logout">Logout</a></li>
+					{% else %}
+						<li><a href="/login">Login</a></li>
+						<li><a href="/register">Register</a></li>
+					{% endif %}
+				</ul>
+				<form class="navbar-form navbar-right" role="search" action="/search" method="get">
+					<div class="form-group">
+						<input type="text" class="form-control" placeholder="Type something here" name="s">
+					</div>
+					<button type="submit" class="btn btn-default">Search</button>
+				</form>
 	    </div>
 	</div>
 </nav><br><br><br><br>
